@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>سامانه مشاهده نمرات</title>
+
+<style>
+*{box-sizing:border-box}
+body{margin:0;font-family:Tahoma;background:#f1f5f9;color:#172033}
+header{background:#172554;color:white;text-align:center;padding:25px}
+.container{max-width:450px;margin:50px auto;padding:25px;background:white;border-radius:15px;box-shadow:0 5px 20px #0001}
+h2{text-align:center}
+input{width:100%;padding:14px;margin:15px 0;border:1px solid #ccc;border-radius:9px;text-align:center;font-size:17px}
+button{width:100%;padding:14px;background:#2563eb;color:white;border:0;border-radius:9px;font-size:16px;cursor:pointer}
+#result{display:none;margin-top:20px;padding:20px;background:#eff6ff;border-radius:10px;line-height:2.5}
+.score{text-align:center;font-size:30px;color:#2563eb;font-weight:bold}
+footer{text-align:center;color:#64748b;padding:20px}
+</style>
+</head>
+
+<body>
+
+<header>
+<h1>سامانه مدیریت نمرات</h1>
+<p>پنل اختصاصی مشاهده کارنامه دانش‌آموزان</p>
+</header>
+
+<div class="container">
+
+<h2>ورود دانش‌آموز</h2>
+
+<p>کد اختصاصی خود را وارد کنید:</p>
+
+<input type="password" id="code" placeholder="کد دانش‌آموزی">
+
+<button onclick="login()">مشاهده کارنامه</button>
+
+<div id="result"></div>
+
+</div>
+
+<footer>سامانه آزمایشی مدیریت نمرات</footer>
+
+<script>
+
+const students = {
+"14001": {
+name:"محمدرضا روشنایی",
+lesson:"فیزیک",
+score:19.75
+},
+
+"14002": {
+name:"علی احمدی",
+lesson:"فیزیک",
+score:18.5
+},
+
+"14003": {
+name:"حسین رضایی",
+lesson:"فیزیک",
+score:17
+},
+
+"14004": {
+name:"امیر محمدی",
+lesson:"فیزیک",
+score:20
+}
+};
+
+function login(){
+
+let code=document.getElementById("code").value.trim();
+
+let result=document.getElementById("result");
+
+let student=students[code];
+
+result.style.display="block";
+
+if(!student){
+
+result.innerHTML="❌ کد وارد شده اشتباه است.";
+
+return;
+
+}
+
+result.innerHTML=`
+
+<h2>کارنامه دانش‌آموز</h2>
+
+نام: ${student.name}
+
+<br>
+
+درس: ${student.lesson}
+
+<div class="score">
+
+${student.score} از ۲۰
+
+</div>
+
+وضعیت: ${student.score>=10?"قبول":"نیازمند تلاش بیشتر"}
+
+`;
+
+}
+
+</script>
+
+</body>
+</html>
